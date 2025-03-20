@@ -2,7 +2,7 @@ using Focu.Core.Common;
 
 namespace Focu.Api.Extensions;
 
-public static class ResultExtensions
+public static class ResultExtension
 {
     public static IResult ToProblem<T>(this Response<T> response) => 
         Results.Problem(

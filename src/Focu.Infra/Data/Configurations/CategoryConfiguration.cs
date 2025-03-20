@@ -23,6 +23,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         
         builder.Property(c => c.UserId)
             .IsRequired()
-            .HasColumnType("UNIQUEIDENTIFIER");
+            .HasColumnType("UNIQUEIDENTIFIER")
+            .HasMaxLength(160);
     }
 }

@@ -32,6 +32,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
         
         builder.Property(x => x.UserId)
             .IsRequired()
-            .HasColumnType("UNIQUEIDENTIFIER");
+            .HasColumnType("UNIQUEIDENTIFIER")
+            .HasMaxLength(160);
     }
 }
