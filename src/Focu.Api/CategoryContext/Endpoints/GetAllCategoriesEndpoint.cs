@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Focu.Api.Common;
 using Focu.Api.Extensions;
 using Focu.Core.CategoryDomain;
@@ -13,10 +14,12 @@ public class GetAllCategoriesEndpoint : IEndpoint
         app.MapGet("/", HandleAsync)
             .WithName("Categories: Get All")
             .WithSummary("Returns all user categories")
+            .RequireAuthorization()
             .WithOrder(1)
             .Produces<PagedResponse<List<Category>>>();
     
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ICategoryHandler handler, 
         [FromQuery] int pageNumber = Configuration.DefaultPageNumber, 
         [FromQuery] int pageSize = Configuration.DefaultPageSize
@@ -24,7 +27,7 @@ public class GetAllCategoriesEndpoint : IEndpoint
     {
         var request = new GetAllCategoriesRequest
         {
-            UserId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
+            UserId = user.Identity.GetUserId(),
             PageNumber = pageNumber,
             PageSize = pageSize
         };

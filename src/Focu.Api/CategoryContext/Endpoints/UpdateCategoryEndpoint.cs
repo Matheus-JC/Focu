@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Focu.Api.Common;
 using Focu.Api.Extensions;
 using Focu.Core.CategoryDomain;
@@ -17,10 +18,14 @@ public class UpdateCategoryEndpoint : IEndpoint
             .Produces<Response<Category?>>(StatusCodes.Status400BadRequest)            
             .Produces<Response<Category?>>(StatusCodes.Status404NotFound);
 
-    private static async Task<IResult> HandleAsync(Guid id, UpdateCategoryRequest request, ICategoryHandler handler)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user, 
+        UpdateCategoryRequest request, 
+        ICategoryHandler handler, 
+        Guid id)
     {
         request.Id = id;
-        request.UserId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6");
+        request.UserId = user.Identity.GetUserId();
         
         var result = await handler.UpdateAsync(request);
 

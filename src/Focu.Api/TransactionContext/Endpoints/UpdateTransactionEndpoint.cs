@@ -1,4 +1,5 @@
-﻿using Focu.Api.Common;
+﻿using System.Security.Claims;
+using Focu.Api.Common;
 using Focu.Api.Extensions;
 using Focu.Core.Common;
 using Focu.Core.TransactionDomain;
@@ -17,10 +18,14 @@ public class UpdateTransactionEndpoint : IEndpoint
             .Produces<Response<Transaction?>>(StatusCodes.Status400BadRequest)            
             .Produces<Response<Transaction?>>(StatusCodes.Status404NotFound);
 
-    private static async Task<IResult> HandleAsync(Guid id, UpdateTransactionRequest request, ITransactionHandler handler)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user, 
+        UpdateTransactionRequest request, 
+        ITransactionHandler handler, 
+        Guid id)
     {
         request.Id = id;
-        request.UserId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6");
+        request.UserId = user.Identity.GetUserId();
         
         var result = await handler.UpdateAsync(request);
 

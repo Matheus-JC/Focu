@@ -1,4 +1,5 @@
-﻿using Focu.Api.Common;
+﻿using System.Security.Claims;
+using Focu.Api.Common;
 using Focu.Api.Extensions;
 using Focu.Core.Common;
 using Focu.Core.TransactionDomain;
@@ -16,12 +17,15 @@ public class DeleteTransactionEndpoint : IEndpoint
             .Produces<Response<Transaction?>>()
             .Produces<Response<Transaction?>>(StatusCodes.Status404NotFound);
 
-    private static async Task<IResult> HandleAsync(Guid id, ITransactionHandler handler)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
+        ITransactionHandler handler,
+        Guid id)
     {
         var request = new DeleteTransactionRequest
         {
             Id = id,
-            UserId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
+            UserId = user.Identity.GetUserId()
         };
         
         var result = await handler.DeleteAsync(request);

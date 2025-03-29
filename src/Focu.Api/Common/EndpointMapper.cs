@@ -1,6 +1,8 @@
 using Focu.Api.CategoryContext.Endpoints;
+using Focu.Api.IdentityContext.Endpoints;
 using Focu.Api.TransactionContext.Endpoints;
 using Focu.Core.TransactionDomain.Requests;
+using Focu.Infra.Data;
 
 namespace Focu.Api.Common;
 
@@ -9,15 +11,18 @@ public static class EndpointMapper
     public static void MapEndpoints(this WebApplication app)
     {
         var endpoints = app.MapGroup("");
-
+        
+        MapHealthCheckEndpoints(endpoints);
         MapCategoryEndpoints(endpoints);
         MapTransactionEndpoints(endpoints);
+        MapIdentityEndpoints(endpoints);
     }
 
     private static void MapCategoryEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapGroup("vi/categories")
+        endpoints.MapGroup("v1/categories")
             .WithTags("Categories")
+            .RequireAuthorization()
             .MapEndpoint<GetAllCategoriesEndpoint>()
             .MapEndpoint<GetCategoryByIdEndpoint>()
             .MapEndpoint<CreateCategoryEndpoint>()
@@ -27,13 +32,35 @@ public static class EndpointMapper
 
     private static void MapTransactionEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapGroup("vi/transactions")
+        endpoints.MapGroup("v1/transactions")
             .WithTags("Transactions")
+            .RequireAuthorization()
             .MapEndpoint<GetTransactionsByPeriodEndpoint>()
             .MapEndpoint<GetTransactionByIdEndpoint>()
             .MapEndpoint<CreateTransactionEndpoint>()
             .MapEndpoint<UpdateTransactionEndpoint>()
             .MapEndpoint<DeleteTransactionEndpoint>();
+    }
+    
+    private static void MapIdentityEndpoints(IEndpointRouteBuilder endpoints)
+    {
+        var identityGroup = endpoints.MapGroup("v1/identity")
+            .WithTags("Identity");
+        
+        // Default Identity endpoints
+        identityGroup.MapIdentityApi<ApplicationUser>();
+
+        // Custom Identity endpoints
+        identityGroup
+            .MapEndpoint<GetRolesEndpoint>()
+            .MapEndpoint<LogoutEndpoint>();
+    }
+    
+    private static void MapHealthCheckEndpoints(IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapGroup("/")
+            .WithTags("Health")
+            .MapGet("/", () => new { message = "OK" });
     }
     
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder route)

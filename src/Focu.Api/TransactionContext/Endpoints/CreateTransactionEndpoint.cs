@@ -1,4 +1,5 @@
-﻿using Focu.Api.Common;
+﻿using System.Security.Claims;
+using Focu.Api.Common;
 using Focu.Api.Extensions;
 using Focu.Core.Common;
 using Focu.Core.TransactionDomain;
@@ -16,9 +17,12 @@ public class CreateTransactionEndpoint : IEndpoint
             .Produces<Response<Transaction?>>(StatusCodes.Status201Created)
             .Produces<Response<Transaction?>>(StatusCodes.Status400BadRequest);
 
-    private static async Task<IResult> HandleAsync(CreateTransactionRequest request, ITransactionHandler handler)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user, 
+        CreateTransactionRequest request, 
+        ITransactionHandler handler)
     {
-        request.UserId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6");
+        request.UserId = user.Identity.GetUserId();
         
         var result = await handler.CreateAsync(request);
 

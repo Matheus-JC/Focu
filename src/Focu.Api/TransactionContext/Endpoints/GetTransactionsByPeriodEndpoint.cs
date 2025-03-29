@@ -1,4 +1,5 @@
-﻿using Focu.Api.Common;
+﻿using System.Security.Claims;
+using Focu.Api.Common;
 using Focu.Api.Extensions;
 using Focu.Core.Common;
 using Focu.Core.TransactionDomain;
@@ -17,6 +18,7 @@ public class GetTransactionsByPeriodEndpoint : IEndpoint
             .Produces<PagedResponse<List<Transaction>>>();
     
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ITransactionHandler handler, 
         [FromQuery] DateTime? startDate = null,
         [FromQuery] DateTime? endDate = null,
@@ -26,7 +28,7 @@ public class GetTransactionsByPeriodEndpoint : IEndpoint
     {
         var request = new GetTransactionsByPeriodRequest
         {
-            UserId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
+            UserId = user.Identity.GetUserId(),
             PageNumber = pageNumber,
             PageSize = pageSize,
             StartDate = startDate,
