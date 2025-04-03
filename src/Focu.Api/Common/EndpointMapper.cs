@@ -1,7 +1,6 @@
-using Focu.Api.CategoryContext.Endpoints;
-using Focu.Api.IdentityContext.Endpoints;
-using Focu.Api.TransactionContext.Endpoints;
-using Focu.Core.TransactionDomain.Requests;
+using Focu.Api.Endpoints.Category;
+using Focu.Api.Endpoints.Identity;
+using Focu.Api.Endpoints.Transaction;
 using Focu.Infra.Data;
 
 namespace Focu.Api.Common;

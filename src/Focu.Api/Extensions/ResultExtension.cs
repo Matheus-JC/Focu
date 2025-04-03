@@ -1,4 +1,5 @@
 using Focu.Core.Common;
+using Focu.Core.Responses;
 
 namespace Focu.Api.Extensions;
 

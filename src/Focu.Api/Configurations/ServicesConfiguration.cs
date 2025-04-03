@@ -1,7 +1,5 @@
-﻿using Focu.Api.CategoryContext;
-using Focu.Api.TransactionContext;
-using Focu.Core.CategoryDomain;
-using Focu.Core.TransactionDomain;
+﻿using Focu.Api.Handlers;
+using Focu.Core.Handlers;
 
 namespace Focu.Api.Configurations;
 

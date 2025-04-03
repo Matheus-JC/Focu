@@ -1,4 +1,4 @@
-using Focu.Core.TransactionDomain;
+using Focu.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

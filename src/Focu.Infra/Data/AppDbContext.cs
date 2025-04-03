@@ -1,5 +1,4 @@
-using Focu.Core.CategoryDomain;
-using Focu.Core.TransactionDomain;
+using Focu.Core.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
