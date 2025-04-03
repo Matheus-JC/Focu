@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Focu.Api", "src\Focu.Api\Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Focu.Core", "src\Focu.Core\Focu.Core.csproj", "{30949E71-04F3-42F1-8764-04D05A3321E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Focu.Web", "Focu.Web\Focu.Web.csproj", "{F7BA4656-214B-4D07-B9A4-FB74171CAE44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Focu.Web", "src\Focu.Web\Focu.Web.csproj", "{F7BA4656-214B-4D07-B9A4-FB74171CAE44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
