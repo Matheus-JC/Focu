@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Focu.Infra", "src\Focu.Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Focu.Core", "src\Focu.Core\Focu.Core.csproj", "{30949E71-04F3-42F1-8764-04D05A3321E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Focu.Web", "Focu.Web\Focu.Web.csproj", "{F7BA4656-214B-4D07-B9A4-FB74171CAE44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,13 +57,20 @@ Global
 		{30949E71-04F3-42F1-8764-04D05A3321E1}.Release|x64.Build.0 = Release|Any CPU
 		{30949E71-04F3-42F1-8764-04D05A3321E1}.Release|x86.ActiveCfg = Release|Any CPU
 		{30949E71-04F3-42F1-8764-04D05A3321E1}.Release|x86.Build.0 = Release|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Debug|x64.Build.0 = Debug|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Debug|x86.Build.0 = Debug|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Release|x64.ActiveCfg = Release|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Release|x64.Build.0 = Release|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7BA4656-214B-4D07-B9A4-FB74171CAE44}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{2E01E7D2-05DF-4FCD-ADB0-8BD3AB751C7A} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
-		{6DAE993F-1D89-4A93-8628-FB4C777008CC} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
-		{30949E71-04F3-42F1-8764-04D05A3321E1} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
