@@ -2,7 +2,7 @@ using Focu.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Focu.Infra.Data.Configurations;
+namespace Focu.Api.Data.Configurations;
 
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {

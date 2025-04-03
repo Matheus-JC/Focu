@@ -1,9 +1,8 @@
-using Focu.Core.Common;
+using Focu.Api.Data;
 using Focu.Core.Handlers;
 using Focu.Core.Models;
 using Focu.Core.Requests.Category;
 using Focu.Core.Responses;
-using Focu.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Focu.Api.Handlers;

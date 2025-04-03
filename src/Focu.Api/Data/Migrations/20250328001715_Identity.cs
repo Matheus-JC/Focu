@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Focu.Infra.Data.Migrations
+namespace Focu.Api.Data.Migrations
 {
     /// <inheritdoc />
     public partial class Identity : Migration

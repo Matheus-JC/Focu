@@ -1,7 +1,7 @@
+using Focu.Api.Data;
 using Focu.Api.Endpoints.Category;
 using Focu.Api.Endpoints.Identity;
 using Focu.Api.Endpoints.Transaction;
-using Focu.Infra.Data;
 
 namespace Focu.Api.Common;
 

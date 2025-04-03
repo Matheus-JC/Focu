@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Focu.Infra.Data;
+namespace Focu.Api.Data;
 
 public class ApplicationUser : IdentityUser<Guid>
 {
-    public List<IdentityRole<Guid>>? Roles { get; set; } = [];
+    public List<IdentityRole<Guid>>? Roles { get; init; } = [];
 }

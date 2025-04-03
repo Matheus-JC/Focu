@@ -1,5 +1,5 @@
 ﻿using Focu.Api.Common;
-using Focu.Infra.Data;
+using Focu.Api.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace Focu.Api.Endpoints.Identity;

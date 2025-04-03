@@ -1,4 +1,4 @@
-﻿using Focu.Infra.Data;
+﻿using Focu.Api.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace Focu.Api.Configurations;

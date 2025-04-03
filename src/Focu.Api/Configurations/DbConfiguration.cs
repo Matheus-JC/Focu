@@ -1,5 +1,5 @@
-﻿using Focu.Core.Common;
-using Focu.Infra.Data;
+﻿using Focu.Api.Data;
+using Focu.Core.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace Focu.Api.Configurations;
