@@ -4,6 +4,9 @@ namespace Focu.Web;
 
 public static class Configuration
 {
+    public const string HttpClientName = "focu";
+    public const string BackendUrl = "http://localhost:5056";
+    
     public static readonly MudTheme Theme = new()
     {
         Typography = new Typography
