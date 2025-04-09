@@ -1,5 +1,6 @@
 ﻿@page "/login"
 @layout HeadlessLayout
+@inherits LoginPage
     
 <PageTitle>Focu - Login</PageTitle>
 
@@ -9,41 +10,45 @@
             <div class="d-flex justify-center pb-8 pt-8">
                 <img src="img/focu.png" alt="Focu - Financial Control Utility" width="200">
             </div>
-            
-            <MudForm @ref="_mudForm">
-                <MudTextField 
-                    T="string" 
+
+            <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+                <DataAnnotationsValidator />
+
+                <MudTextField
+                    T="string"
                     Label="E-mail"
+                    HelperText="Required"
                     InputType="InputType.Email"
-                    Required="true" 
-                    RequiredError="Inform the E-mail"
-                    Validation="@(new EmailAddressAttribute { ErrorMessage = "Invalid E-mail" })"
+                    For="@(() => InputModel.Email)"
+                    @bind-Value="@InputModel.Email"
                 />
 
                 <MudTextField
                     T="string"
                     Label="Password"
+                    HelperText="Required"
                     InputType="InputType.Password"
-                    Required="true"
-                    RequiredError="Inform the Password"
+                    For="@(() => InputModel.Password)"
+                    @bind-Value="@InputModel.Password"
                 />
-            </MudForm>
-            
-            <div class="d-flex mt-8 justify-center">
-                <MudButton Color="Color.Primary" Variant="Variant.Filled">
-                    Sign In
-                </MudButton>
-                
-                <MudSpacer />
-                
-                <MudButton Href="/register">
-                    Sign Up
-                </MudButton>
-            </div>
+
+                <div class="d-flex mt-8 justify-center">
+                    @if (IsBusy){
+                        <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                    }
+                    else {
+                        <MudButton Color="Color.Primary" Variant="Variant.Filled" ButtonType="ButtonType.Submit">
+                            Sign In
+                        </MudButton>
+
+                        <MudSpacer />
+
+                        <MudButton Href="/register">
+                            Sign Up
+                        </MudButton>
+                    }
+                </div>
+            </EditForm>
         </MudPaper>
     </MudItem>
 </MudGrid>
-
-@code {
-    MudForm? _mudForm;
-}

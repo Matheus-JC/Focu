@@ -8,7 +8,7 @@ public class IdentityUserRoleConfiguration : IEntityTypeConfiguration<IdentityUs
 {
     public void Configure(EntityTypeBuilder<IdentityUserRole<Guid>> builder)
     {
-        builder.ToTable("IdentityUserRole");
+        builder.ToTable("IdentityUserRoles");
         builder.HasKey(r => new { r.UserId, r.RoleId });
     }
 }

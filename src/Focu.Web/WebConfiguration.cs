@@ -2,10 +2,10 @@
 
 namespace Focu.Web;
 
-public static class Configuration
+public static class WebConfiguration
 {
     public const string HttpClientName = "focu";
-    public const string BackendUrl = "http://localhost:5056";
+    public static string BackendUrl { get; set; } = string.Empty;
     
     public static readonly MudTheme Theme = new()
     {

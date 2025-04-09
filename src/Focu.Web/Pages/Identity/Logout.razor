@@ -1,0 +1,25 @@
+﻿@page "/logout"
+@layout HeadlessLayout
+@inherits LogoutPage
+
+<PageTitle>Focu - Logout</PageTitle>
+
+<MudText Typo="Typo.h3">Finalizing Session...</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+    <div class="d-flex justify-center pb-8 pt-8">
+        <img src="img/focu.png" alt="Focu - Financial Control Utility" width="200">
+    </div>
+    
+    <MudAlert Severity="Severity.Info">
+        <div>
+            Session has been successfully terminated. You can now close this tab or return to the login page.
+            <br/>
+            <br/>
+            <MudButton Variant="Variant.Text" Href="/login">
+                <MudIcon Icon="@Icons.Material.Filled.Login" />
+                Login
+            </MudButton>
+        </div>
+    </MudAlert>
+</MudPaper>

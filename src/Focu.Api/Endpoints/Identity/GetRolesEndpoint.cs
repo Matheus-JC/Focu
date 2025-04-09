@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Focu.Api.Common;
+using Focu.Core.Models.Account;
 
 namespace Focu.Api.Endpoints.Identity;
 
@@ -19,13 +20,13 @@ public class GetRolesEndpoint : IEndpoint
         
         var roles = identity
             .FindAll(identity.RoleClaimType)
-            .Select(c => new 
+            .Select(c => new RoleClaim
             {
-                c.Issuer,
-                c.OriginalIssuer,
-                c.Type,
-                c.Value,
-                c.ValueType
+                Issuer = c.Issuer,
+                OriginalIssuer = c.OriginalIssuer,
+                Type = c.Type,
+                Value = c.Value,
+                ValueType = c.ValueType
             });
         
         return Results.Ok(roles);
