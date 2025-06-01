@@ -1,3 +1,9 @@
+:root {
+    --blazor-load-percentage: 0%;
+    --blazor-load-percentage-text: "Loading";
+    --bs-secondary-color: #6c757d;
+}
+
 #blazor-error-ui {
     color-scheme: light only;
     background: lightyellow;

@@ -25,8 +25,8 @@ public static class WebConfiguration
             AppbarText = Colors.Shades.Black,
             TextPrimary = Colors.Shades.Black,
             PrimaryContrastText = Colors.Shades.Black,
-            DrawerText = Colors.Shades.Black,
-            DrawerBackground = Colors.LightGreen.Lighten4
+            DrawerText = Colors.Shades.White,
+            DrawerBackground = Colors.LightGreen.Darken4
         },
         PaletteDark = new PaletteDark
         {
@@ -34,6 +34,7 @@ public static class WebConfiguration
             Secondary = Colors.LightGreen.Darken3,
             AppbarBackground = Colors.LightGreen.Accent3,
             AppbarText = Colors.Shades.Black,
+            PrimaryContrastText = Colors.Shades.Black
         }
     };
 }

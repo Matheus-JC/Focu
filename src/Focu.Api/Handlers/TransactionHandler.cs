@@ -12,8 +12,8 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
 {
     public async Task<PagedResponse<List<Transaction>>> GetByPeriodAsync(GetTransactionsByPeriodRequest request)
     {
-        request.StartDate ??= DateTime.Now.GetFirstDay();
-        request.EndDate ??= DateTime.Now.GetLastDay();
+        request.StartDate ??= DateTime.Now.GetFirstDayOfMonth();
+        request.EndDate ??= DateTime.Now.GetLastDayOfMonth();
 
         var query = context.Transactions
             .AsNoTracking()
