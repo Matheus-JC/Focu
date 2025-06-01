@@ -1,7 +1,11 @@
 using Focu.Api.Data;
 using Focu.Api.Endpoints.Category;
 using Focu.Api.Endpoints.Identity;
+using Focu.Api.Endpoints.Orders;
+using Focu.Api.Endpoints.Reports;
+using Focu.Api.Endpoints.Stripe;
 using Focu.Api.Endpoints.Transaction;
+using Focu.Core.Models.Account;
 
 namespace Focu.Api.Common;
 
@@ -15,6 +19,9 @@ public static class EndpointMapper
         MapCategoryEndpoints(endpoints);
         MapTransactionEndpoints(endpoints);
         MapIdentityEndpoints(endpoints);
+        MapOrderEndpoints(endpoints);
+        MapStripeEndpoints(endpoints);
+        MapReportEndpoints(endpoints);
     }
 
     private static void MapCategoryEndpoints(IEndpointRouteBuilder endpoints)
@@ -60,6 +67,39 @@ public static class EndpointMapper
         endpoints.MapGroup("/")
             .WithTags("Health")
             .MapGet("/", () => new { message = "OK" });
+    }
+
+    private static void MapOrderEndpoints(IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapGroup("v1/orders")
+            .WithTags("Orders")
+            .RequireAuthorization()
+            .MapEndpoint<GetAllOrdersEndpoint>()
+            .MapEndpoint<GetOrderByNumberEndpoint>()
+            .MapEndpoint<CreateOrderEndpoint>()
+            .MapEndpoint<CancelOrderEndpoint>()
+            .MapEndpoint<PayOrderEndpoint>()
+            .MapEndpoint<RefundOrderEndpoint>();
+    }
+
+    private static void MapStripeEndpoints(IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapGroup("v1/payments/stripe")
+            .WithTags("Payments - Stripe")
+            .RequireAuthorization()
+            .MapEndpoint<CreateSessionEndpoint>()
+            .MapEndpoint<GetTransactionsByOrderNumberEndpoint>();
+    }
+
+    private static void MapReportEndpoints(IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapGroup("/v1/reports")
+            .WithTags("Reports")
+            .RequireAuthorization()
+            .MapEndpoint<GetIncomesAndExpensesEndpoint>()
+            .MapEndpoint<GetIncomesByCategoryEndpoint>()
+            .MapEndpoint<GetExpensesByCategoryEndpoint>()
+            .MapEndpoint<GetFinancialSummaryEndpoint>();
     }
     
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder route)

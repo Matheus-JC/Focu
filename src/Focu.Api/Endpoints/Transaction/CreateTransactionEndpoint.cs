@@ -1,7 +1,6 @@
 ﻿using System.Security.Claims;
 using Focu.Api.Common;
 using Focu.Api.Extensions;
-using Focu.Core.Common;
 using Focu.Core.Handlers;
 using Focu.Core.Requests.Transaction;
 using Focu.Core.Responses;

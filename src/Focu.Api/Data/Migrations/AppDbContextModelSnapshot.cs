@@ -114,6 +114,172 @@ namespace Focu.Api.Data.Migrations
                     b.ToTable("Categories", (string)null);
                 });
 
+            modelBuilder.Entity("Focu.Core.Models.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("DATETIME2");
+
+                    b.Property<string>("ExternalReference")
+                        .HasMaxLength(60)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<short>("Gateway")
+                        .HasColumnType("SMALLINT");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("CHAR");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<short>("Status")
+                        .HasColumnType("SMALLINT");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("DATETIME2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<Guid?>("VoucherId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("VoucherId");
+
+                    b.ToTable("Order", (string)null);
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Premium", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndedAt")
+                        .HasColumnType("DATETIME2");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("DATETIME2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("VARCHAR");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Premium", (string)null);
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("NVARCHAR");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("BIT");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("MONEY");
+
+                    b.Property<string>("Slug")
+                        .HasMaxLength(80)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("NVARCHAR");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Product", (string)null);
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Reports.ExpensesByCategory", b =>
+                {
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Expenses")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.ToTable((string)null);
+
+                    b.ToView("vwGetExpensesByCategory", (string)null);
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Reports.IncomesAndExpenses", b =>
+                {
+                    b.Property<decimal>("Expenses")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Incomes")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.ToTable((string)null);
+
+                    b.ToView("vwGetIncomesAndExpenses", (string)null);
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Reports.IncomesByCategory", b =>
+                {
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Incomes")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.ToTable((string)null);
+
+                    b.ToView("vwGetIncomesByCategory", (string)null);
+                });
+
             modelBuilder.Entity("Focu.Core.Models.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
@@ -149,6 +315,37 @@ namespace Focu.Api.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Transactions", (string)null);
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Voucher", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("MONEY");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("NVARCHAR");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("BIT");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("CHAR");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("NVARCHAR");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Voucher", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -289,6 +486,34 @@ namespace Focu.Api.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("IdentityUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Order", b =>
+                {
+                    b.HasOne("Focu.Core.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Focu.Core.Models.Voucher", "Voucher")
+                        .WithMany()
+                        .HasForeignKey("VoucherId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Voucher");
+                });
+
+            modelBuilder.Entity("Focu.Core.Models.Premium", b =>
+                {
+                    b.HasOne("Focu.Core.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Focu.Core.Models.Transaction", b =>
